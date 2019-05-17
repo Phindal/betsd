@@ -1,0 +1,6 @@
+# Export explicitly by name, good practice
+export(t1e.tsd)
+
+# Import all packages listed as Imports or Depends
+importFrom(stats, coef, extractAIC, lm, quantile, runif)
+import(Power2Stage)

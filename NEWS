@@ -1,0 +1,26 @@
+Version 0.1-3
+Released to collaborators 2019-05-17
+    - inv.reg() uses 'alpha_adj' with all decimal places
+    - t1e.tsd() allows additionally to use from power.tsd()                     the following parameters: pmethod, theta1, theta2, and npct
+    - License: GPL-2
+
+Version 0.1-2
+Released to collaborators 2019-05-14
+    - Removed superfluous argument'i' from potvin() and
+      importFrom(utils, globalvariables) from NAMESPACE
+
+Version 0.1-1
+Released to collaborators 2019-05-10
+    - License MIT + GLP >=2 (cause this is the one Power2Stage uses)
+    - Fixed NAMESPACE
+    - Updated DESCRIPTION
+    - + NEWS
+    - Updated man-page
+    - Changed argument 'method_type' to 'type' for clarity
+    - Returns a list of results if print=FALSE
+    - Suppress intermediate results if details=FALSE
+    - Todo: Fix problems with global variable 'i' in potvin()
+      using utils::globalvariables() does not help
+    - Todo: Allow /really/ additional arguments
+Version 0.1-0
+Published on GitHub 2019-05-08
