@@ -2,19 +2,21 @@ Encoding: UTF-8
 Package: betsd
 Type: Package
 Title: Adjusting significance levels using two-stage adaptive 2x2 crossover designs
-Version: 0.1.3
-Authors@R: c(person("Eduard", "Molins", role = c("aut", "cre"), email = "molins.eduard@gmail.com"),
+Version: 0.1.5
+Authors@R: c(person("Molins", "Eduard", role = c("aut", "cre"), email = "molins.eduard@gmail.com"),
              person("Detlew", "Labes", role = c("ctb"), email = "DetlewLabes@gmx.de"),
              person("Helmut", "Schütz", role = c("ctb"), email = "helmut.schuetz@bebac.at"),
              person("Jordi", "Ocaña", role = c("ctb"), email = "jocana@ub.edu"))
-Description: Iterative method to adjust significance levels at each stage which preserves the overall type I error.
+Maintainer: Eduard Molins <molins.eduard@gmail.com>
+Description: Iterative method to adjust significance levels at each stage
+ which preserves the overall type I error.
 Depends: R (>= 3.5)
-Imports: utils, stats, Power2Stage
+Imports: stats, Power2Stage
 LazyData: true
 ByteCompile: yes
-License: GPL-2
+License: GPL
 URL: https://github.com/eduard-molins/betsd
 BugReports: https://github.com/eduard-molins/betsd/issues
 Author: Molins Eduard [aut, cre]
 NeedsCompilation: no
-Packaged: 2019-05-17 21:07:35 UTC; HS
+Packaged: 2019-05-21 09:41:13 UTC; HS

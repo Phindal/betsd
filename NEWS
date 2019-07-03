@@ -1,7 +1,32 @@
+Version 0.1-5
+Released to collaborators 2019-07-03
+     - By default, the adjusted significance levels take into account the 'CV' value/s specified by the investigator +/- 0.05. This is to prevent from a misespecification of the 'CV', which is in fact unknown by the investigator
+     - To avoid that successive adjusted significance levels are repeated thoughtout the different iterations due to the fact that the 'step_size' parameter is a constant value, the iteration number is used for subsequent attemps on the significance levels adjustments ('step_size'*('iter'+1))
+     - An upper bound for the 'alpha_adj' has been removed to avoid ending with different final adjusted significance levels under different initial 'alpha1' and 'alpha2' specifications
+     - When inv.reg() function selects the quadratic model, based on min(AIC), and, if the 'det' < 0, then the linear regression model is used instead
+     - The parameter 'old_alpha' has been changed to 'current_alpha' because this terminology is more accurate
+     - When 'max_iter' is reached then the algorithm resolves protecting the type I error
+     - At each iteration, the parameter 'diff', i.e., the difference between the 'current_alpha' and the 'alpha_adj', has been changed from 1E-4 to 2E-4, to avoid reaching 'max_iter' so many times, and to save time
+     - Simulations are ogranized in 4 scenarios:
+     a. The empiric type I error < 0.05 and diff < 2E-4 
+     b. The empiric type I error > 0.05 and diff < 2E-4
+     c. The empiric type I error < 0.05 and diff > 2E-4
+     d. The empiric type I error > 0.05 and diff > 2E-4
+
+Version 0.1-4
+Released to collaborators 2019-05-21
+    - Use theta0 for estimation of TIE (instead of hardcoded 1.25)
+    - Can specify theta1 & theta2 (e.g. for NTIDs);
+      explicit in the calls since as part of (...) did't work
+    - Changed the step size from 0.0001 to the one resulting
+      from seq(..., length.out=7)
+    - TODO: npct != hardcoded c(0.05, 0.5, 0.95)
+
 Version 0.1-3
 Released to collaborators 2019-05-17
     - inv.reg() uses 'alpha_adj' with all decimal places
-    - t1e.tsd() allows additionally to use from power.tsd()                     the following parameters: pmethod, theta1, theta2, and npct
+    - t1e.tsd() allows additionally to use from power.tsd()
+      the following parameters: pmethod, theta1, theta2, and npct
     - License: GPL-2
 
 Version 0.1-2

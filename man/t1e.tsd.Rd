@@ -7,8 +7,9 @@ This function calculates, by iterative search, the adjusted significance levels 
 }
 \usage{
 t1e.tsd(n1, CV, GMR = 0.95, Nmax = 150, min.n2 = n1/2, type = 1,
-        alpha = 0.05, alpha1 = 0.0294, alpha2 = alpha1, targetpower = 0.8,
-        setseed = TRUE, details = TRUE, print = TRUE, ...)
+        alpha = 0.05, alpha1, alpha2, targetpower = 0.8,
+        setseed = TRUE, theta1, theta2,
+        details = TRUE, print = TRUE, ...)
 }
 \arguments{
 \item{n1}{Sample size of \ifelse{html}{\out{stage&nbsp;1}}{stage 1}.}
@@ -20,7 +21,7 @@ t1e.tsd(n1, CV, GMR = 0.95, Nmax = 150, min.n2 = n1/2, type = 1,
     \ifelse{html}{\out{stage&nbsp;2}}{stage 2}).\cr
     By default \verb{0.95}.}
 
-\item{Nmax}{Overall maximum number of subjects (sum of sample sizes in both stages, \emph{i.e.}, \verb{N = n1 + N2}).\cr
+\item{Nmax}{Overall maximum number of subjects (sum of sample sizes in both stages, \emph{i.e.}, \verb{N = n1 + n2}).\cr
 By default \verb{150}, see the details section.}
 
 \item{min.n2}{Minimum number of subjects at second stage. By default \verb{n1/2}. Set \verb{min.n2 = 0} to cancel any limitation on the sample size at the second stage, \verb{N2}. See the details section for more information.}
@@ -40,6 +41,10 @@ By default \verb{0.8}.}
 To avoid differences in power for different runs a setseed(1234567) is issued if set to \verb{TRUE}, the default.\cr
 Set this argument to \verb{FALSE} for a random seed.}
 
+\item{theta1}{Lower limit of the bioequivalence range. By default \verb{0.8}.}
+
+\item{theta2}{Upper limit of the bioequivalence range. By default \verb{1.25}.}
+
 \item{details}{If set to \verb{TRUE} (default) shows intermediate results in the console. Set this argument to \verb{FALSE} to supress intermediate results.}
 
 \item{print}{If set to \verb{TRUE} (default) shows final results in the console.\cr
@@ -58,8 +63,9 @@ By default, \verb{Nmax = 150} and \verb{min.n2 = n1/2}. Its present implementati
 
 \verb{n1} and \verb{CV} can be scalars or vectors. As vectors, the result might loose some power for a particular combination.\cr
 Global significance level is ensured by returning the adjusted \verb{alpha1} and \verb{alpha2} of the worst case scenario for all combinations of \verb{n1} and \verb{CV}.
+To ensure that the overall type I error is below \verb{alpha}, this code prevents from a misespecifications of \verb{CV} (which is unknown at this stage) considering \verb{CV} +/- 0.05 by default. 
 
-By default \verb{alpha = 0.05}, \verb{alpha1 = 0.0294} and \verb{alpha2 = alpha1}. However, \verb{alpha1} and \verb{alpha2} can be different.\cr
+By default \verb{alpha = 0.05} and \verb{alpha1 = alpha2 = 0.0294}. However, \verb{alpha1} and \verb{alpha2} can be different.\cr
 In this case, set \verb{alpha1} and \verb{alpha2}, and \verb{alpha1} will be fixed whilst \verb{alpha2} adjusted.
 
 This function uses the package 'Power2Stage' developed by Labes \emph{et al.} and is based on the Potvin \emph{et al.} (2008) methods.
@@ -67,13 +73,13 @@ This function uses the package 'Power2Stage' developed by Labes \emph{et al.} an
 \examples{
 \dontrun{
 t1e.tsd(n1 = 24, CV = c(0.3, 0.4, 0.5, 0.6), GMR = 0.95, type = 1)
-# should give adjusted alpha 0.0308 at both stages and
-# a maximum empirical type I error 0.049807
-# Note: runtime ~11 minutes on a Xeon E3-1245 Quadcore 3.4 GHz
+# should give adjusted alpha 0.0307 at both stages and
+# a maximum empirical type I error 0.04998
+# Note: runtime ~15 minutes on a Xeon E3-1245 Quadcore 3.4 GHz
 t1e.tsd(n1 = 12, CV = 0.2, GMR = 0.9, alpha1 = 0.0280, alpha2 = 0.0280, type = 2)
-# should give adjusted alpha 0.0269 at both stages and
-# a maximum empirical type I error 0.04997
-# Note: runtime ~45 minutes
+# should give adjusted alpha 0.0268 at both stages and
+# a maximum empirical type I error 0.049591
+# Note: runtime ~7 minutes
 # List of results
 x <- t1e.tsd(n1 = 12, CV = 0.10, type = 2, print = FALSE)
 print(as.data.frame(x), row.names = FALSE)}
