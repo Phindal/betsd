@@ -52,9 +52,10 @@ t1e.tsd <- function(n1, CV, GMR = 0.95, Nmax = 150, min.n2 = n1/2, type = 1,
     stop("setseed should be TRUE for setseed = 1234567 or FALSE for a random setseed.")
   }
   if (setseed) {
-    setseed <- 1234567
+    seed <- 1234567 #This corresponds to set.seed(1234567) used in power.tsd if setseed = TRUE
   } else {
-    setseed <- runif(1, max=1E7)
+    seed <- runif(1, max=1E7)
+    set.seed(seed)
   }
   
   max_iter <- FALSE
@@ -182,7 +183,7 @@ t1e.tsd <- function(n1, CV, GMR = 0.95, Nmax = 150, min.n2 = n1/2, type = 1,
     #current_alpha[2] because this is the only one we adjust. If alpha1=alpha2, then the alpha2 adjusted
     #is copied in alpha1. If alpha1 and alpha are different, the only that we adjust is alpha2
     diff <- abs(current_alpha[2] - alpha_adj[2])
-    #SCENARIO 1/4: T1E < 0.05 and Diff <= 1E-4
+    #SCENARIO 1/4: T1E < 0.05 and Diff <= 2E-4
     if (max_T1E["pBE"] < alpha & diff <= 2E-4) { 
       current_alpha <- floor(current_alpha*1e4)/1e4
       #The following repeat serves to find a solution when the algorithm enters into a cycle 
