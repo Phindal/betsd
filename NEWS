@@ -1,3 +1,7 @@
+Version 0.1-6
+Released to collaborators 2019-12-09
+     - set.seed(seed) has been added in line 58
+     
 Version 0.1-5
 Released to collaborators 2019-07-03
      - By default, the adjusted significance levels take into account the 'CV' value/s specified by the investigator +/- 0.05. This is to prevent from a misespecification of the 'CV', which is in fact unknown by the investigator
