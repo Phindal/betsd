@@ -52,11 +52,12 @@ t1e.tsd <- function(n1, CV, GMR = 0.95, Nmax = 150, min.n2 = n1/2, type = 1,
     stop("setseed should be TRUE for setseed = 1234567 or FALSE for a random setseed.")
   }
   if (setseed) {
-    seed <- 1234567 #This corresponds to set.seed(1234567) used in power.tsd if setseed = TRUE
+    setseed <- 1234567 
   } else {
-    seed <- runif(1, max=1E7)
-    set.seed(seed)
+     setseed <- runif(1, max=1E7)
+     set.seed(setseed)
   }
+
   
   max_iter <- FALSE
   iter <- -1
